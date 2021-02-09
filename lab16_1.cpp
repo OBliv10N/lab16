@@ -3,7 +3,7 @@ using namespace std;
 
 int main(){
 	int nA,nB;
-	int *A,*B,**C;	
+	int *A,*B,**C; // **star?	
 	
 	cout << "Length of A: ";
 	cin >> nA;
@@ -19,12 +19,12 @@ int main(){
 	cout << "Input Array B: ";
 	for(int i=0; i < nB; i++) cin >> B[i];
 	
-	C = new int*[nA];
-	for(int i=0; i < nA; i++) C[i] = new int;
+	C = new int *[nA];//อย่าลืม Star 
+	for(int i=0; i < nA; i++) C[i] = *new int [nB];
 	
 	for(int i=0; i < nA; i++){
 		for(int j=0; j < nB; j++) {
-			C[i][j] = A[i]*B[j];
+			C[i][j] = A[i]*B[j]; //Array 2D
 		}
 	}
 	
@@ -37,12 +37,11 @@ int main(){
 	for(int i=0; i < nA; i++){
 		cout << A[i] << "\t";
 		for(int j=0; j < nB; j++) {
-			cout << C[i][j] << "\t";
+			cout << C[i][j] << "\t"; //ตอน output ต้องเป็น 2D เลยต้องพิมพ์ [i][j]
 		}
 		cout << "\n";
 	}
-	for(int i=0;i<nA;i++) delete[]C[i];
-     delete C; 
-
+     for(int i=0;i<nA;i++) delete[]C[i];
+     delete C; //ตรงนี้งงทำไม loop?
 	return 0;
 }
